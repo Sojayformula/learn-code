@@ -189,7 +189,13 @@ export class EmployeeService {
 
     if (item.status) {
       url += `${isFirstParam ? '?' : '&'}status=${item.status}`;
+      isFirstParam = false;
     }
+
+     if (item.department) {
+    url += `${isFirstParam ? '?' : '&'}department=${item.department}`;
+    isFirstParam = false;
+  }
 
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

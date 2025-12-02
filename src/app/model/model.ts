@@ -6,26 +6,29 @@ export class LoginModel {
 
 
 
+// export class EmployeeModel {
+//   id?: number;
+//   name?: string;
+//   // department?: string;
+//   status: string = '';
+//   search: string = '';
+//   page: number = 1;
+//   pageSize: number = 10;
+//    job: {
+//     department?: string;
+//   } = { department: "" };  
+// }
+
+
 export class EmployeeModel {
-  id?: number;
-  name?: string;
-  department?: string;
+  id: number = 0;
+  name: string = '';
+  department?: string = '';
   status: string = '';
   search: string = '';
   page: number = 1;
   pageSize: number = 10;
 }
-
-
-// export class EmployeeModel {
-//   id: number = 0;
-//   name: string = '';
-//   department: string = '';
-//   status: string = '';
-//   search: string = '';
-//   page: number = 1;
-//   pageSize: number = 10;
-// }
 
 
 

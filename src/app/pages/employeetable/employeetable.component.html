@@ -13,37 +13,44 @@
 <div class="text-sm tracking-widest text-gray-500 2xl font-semibold mb-4">Employee List</div>
 
 
-     <!-- Filter modal -->
-  <div *ngIf="showFilterModal" class="flex justify-center">
-    <div class="border w-[25rem] [10rem]">
-    <div class="flex justify-center items-center mt-[4rem]">
-    <select class="border p-2 rounded h-10 w-full mx-6"
-    id="department"
-    [(ngModel)]="tempDepartment"
-    name="department"
-    >
-      <option value="All">All Departments</option>
-      <option *ngFor="let dep of allEmployees" [value]="dep.job.department">
-        {{dep.job.department}}
-      </option>
-    </select>
-    </div>
 
-      <div class="flex justify-end gap-4 mt-10 mb-4 mx-6">
-        <div class="">
-          <button (click)="cancelFilterModal()">
+     <!-- Filter Modal (ON TOP) -->
+    <div *ngIf="showFilterModal"
+     class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50"> -->
+
+  <!-- Modal Box -->
+   <div class="bg-white border rounded-lg w-[25rem] p-6"> -->
+
+      <!-- Department Dropdown -->
+       <select class="border p-2 rounded h-10 w-full mb-6"
+              id="department"
+              [(ngModel)]="tempDepartment"
+              name="department">
+
+        <option value="ALL">All Departments</option>
+        <option *ngFor="let dep of allEmployees" [value]="dep.job.department">
+          {{ dep.job.department }}
+        </option>
+
+      </select>
+
+      <!-- Buttons -->
+       <div class="flex justify-end gap-4">
+        <button (click)="cancelFilterModal()"
+                class="px-4 py-1 border rounded">
           Cancel
-          </button>
-        </div>
-        <div>  
-        <button (click)="filter()" class="text-white border border-blue-900 bg-blue-500 py-1 px-4">
+        </button>
+
+        <button (click)="filter()"
+                class="text-white border border-blue-900 bg-blue-500 py-1 px-4 rounded">
           Ok
         </button>
-        </div> 
-    </div>
-   
-     </div>
-     </div>
+      </div>
+
+  </div>
+
+</div>
+
 
 
 
@@ -52,16 +59,26 @@
 <div class="flex justify-end">
     <input
     type="search"
-    name="serch"
+    name="search"
+    [(ngModel)]="searchQuery"
     placeholder="Search by name"
     class="flex justify-end w-[15rem] h-8 p-3 relative top-8 rounded-[10px] border border-gray-500 items- center"
     >
-    <div class="relative right-10 top-9">
-    <button >
+    <div class="relative right-14 top-9">
+    <button (click)="search()">
         🔍
     </button>
     </div>
 </div>
+<!-- <input
+  type="search"
+  [(ngModel)]="searchQuery"
+  placeholder="Search by name, email, phone, department"
+  class="w-64 p-2 border rounded"
+/>
+<button (click)="search()">Search</button> -->
+
+
 
 
   <!-- Toggle -->
@@ -142,7 +159,10 @@
      </div> -->
 
      <div class="border w-[8rem] h-10 rounded-[10px] flex justify-center">
-      <button (click)="openFilterModal()">Filter</button>
+      <button (click)="openFilterModal()" class="flex gap-2 items-center">
+        Filter
+         <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+      </button>
      </div>
 
     <!-- <select [(ngModel)]="employeeData.status" (change)="applyFilter()"
