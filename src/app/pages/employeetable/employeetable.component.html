@@ -1,0 +1,194 @@
+
+
+<div class="text- red-500 flex flex-col items-center mt-4">
+  <!-- Hello who this -->
+
+  
+</div>
+
+
+
+    <div class="p-6">
+
+<div class="text-sm tracking-widest text-gray-500 2xl font-semibold mb-4">Employee List</div>
+
+
+     <!-- Filter modal -->
+  <div *ngIf="showFilterModal" class="flex justify-center">
+    <div class="border w-[25rem] [10rem]">
+    <div class="flex justify-center items-center mt-[4rem]">
+    <select class="border p-2 rounded h-10 w-full mx-6"
+    id="department"
+    [(ngModel)]="tempDepartment"
+    name="department"
+    >
+      <option value="All">All Departments</option>
+      <option *ngFor="let dep of allEmployees" [value]="dep.job.department">
+        {{dep.job.department}}
+      </option>
+    </select>
+    </div>
+
+      <div class="flex justify-end gap-4 mt-10 mb-4 mx-6">
+        <div class="">
+          <button (click)="cancelFilterModal()">
+          Cancel
+          </button>
+        </div>
+        <div>  
+        <button (click)="filter()" class="text-white border border-blue-900 bg-blue-500 py-1 px-4">
+          Ok
+        </button>
+        </div> 
+    </div>
+   
+     </div>
+     </div>
+
+
+
+
+     <!-- Search query -->
+<div class="flex justify-end">
+    <input
+    type="search"
+    name="serch"
+    placeholder="Search by name"
+    class="flex justify-end w-[15rem] h-8 p-3 relative top-8 rounded-[10px] border border-gray-500 items- center"
+    >
+    <div class="relative right-10 top-9">
+    <button >
+        🔍
+    </button>
+    </div>
+</div>
+
+
+  <!-- Toggle -->
+<div class=" flex justify-between mt-20">
+ <div class="flex border rounded-[10px] bg-gray-100 [#C8A27B] mb-2">
+    <div>
+    <button (click)="toggleSelect('ALL')" 
+        class="h-[36px] px-5 rounded-[10px] text-[#777777] cursor-pointer"
+        [ngClass]="{
+          'text-white bg-gradient-to-b from-[#122C69] to-[#1D0434]': selectedChoice === 'ALL',
+          'text-[#838383]': selectedChoice !== 'ALL'
+        }"
+        >All</button>
+
+    </div>
+  
+
+    <div>
+     <button
+     (click)="toggleSelect('Approved')" 
+        class="h-[36px] px-5 rounded-[10px] text-[#777777] cursor-pointer"
+        
+        [ngClass]="{
+          'text-white bg-gradient-to-b from-[#122C69] to-[#1D0434]': selectedChoice === 'Approved',
+          'text-[#838383]': selectedChoice !== 'Approved'
+        }"
+     >
+      Approved
+    </button>
+    </div>
+
+     <div>
+     <button
+     (click)="toggleSelect('Pending')"
+     class="h-[36px] px-5 rounded-[10px] cursor-pointer"
+    [ngClass]="{
+    'text-white bg-gradient-to-b from-[#122C69] to-[#1D0434] active-button': selectedChoice === 'Pending',
+    'text-[#838383]': selectedChoice !== 'Pending'
+  }"
+     >
+      Pending
+    </button>
+    </div>
+
+     <div>
+     <button
+     (click)="toggleSelect('Rejected')"
+     class="h-[36px] px-5 rounded-[10px] cursor-pointer"
+    [ngClass]="{
+    'text-white bg-gradient-to-b from-[#122C69] to-[#1D0434] active-button': selectedChoice === 'Rejected',
+    'text-[#838383]': selectedChoice !== 'Rejected'
+  }"
+     >
+      Rejected
+    </button>
+    </div>
+  </div>
+
+
+
+  <!-- Filter Bar  applyFilter -->
+  <div class="flex gap-4">
+    <!-- <div *ngIf="showFilterModal">
+    <select class="border p-2 rounded h-10"
+    id="department"
+    [(ngModel)]="tempDepartment"
+    name="department"
+    >
+      <option value="All">All Departments</option>
+      <option *ngFor="let dep of allEmployees" [value]="dep.job.department">
+        {{dep.job.department}}
+      </option>
+    </select>
+   
+    <button (click)="filter()" class="text-white border border-blue-900 bg-blue-500 py-1 px-4">
+      Ok
+    </button>
+     </div> -->
+
+     <div class="border w-[8rem] h-10 rounded-[10px] flex justify-center">
+      <button (click)="openFilterModal()">Filter</button>
+     </div>
+
+    <!-- <select [(ngModel)]="employeeData.status" (change)="applyFilter()"
+            class="border p-2 rounded h-10">
+      <option value="All">All Status</option>
+      <option value="Pending">Pending</option>
+      <option value="Approved">Approved</option>
+      <option value="Rejected">Rejected</option>
+    </select> -->
+  </div>
+
+  </div>
+
+
+  <!-- Employee Table -->
+  <div class="overflow-auto rounded-lg shadow mb-10">
+    <table class="w-full">
+      <thead class="bg-gray-200 text-left">
+        <tr>
+          <th class="p-3">ID</th>
+          <th class="p-3">Name</th>
+          <th class="p-3">Department</th>
+          <th class="p-3">Status</th>
+          <th class="p-3">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- filteredEmployees -->
+        <tr *ngFor="let emp of allEmployees" class="border-b hover:bg-gray-100">
+          <td class="p-3">{{ emp.id }}</td>
+          <td class="p-3">{{ emp.personal.fullName }}</td>
+          <td class="p-3">{{ emp.job.department }}</td>
+          <td class="p-3">
+            <span
+              class="px-3 py-1 rounded text-white"
+              [ngClass]="{
+                'bg-yellow-600': emp.status === 'Pending',
+                'bg-green-600': emp.status === 'Approved',
+                'bg-red-600': emp.status === 'Rejected'
+              }">
+              {{ emp.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

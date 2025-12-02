@@ -1,0 +1,71 @@
+
+ <div class="flex flex-col items-center justify-center mt-24">
+ <form #form="ngForm" (ngSubmit)="submitForm(form)">
+     <div class="mt-">
+    <label for="email" class="text-[#7C7C7C] mt-3 block text-[15px]">Email</label>
+    <input
+      type="email"
+      name="email"
+       [(ngModel)]="email"
+      #emailField="ngModel"
+      required
+      placeholder="Example@email.com"
+      class="text-[#7C7C7C] border-2 border-[#D7D7D7] bg-[#F2F2F2] w-[350px] lg:w-[612px] h-[55px] rounded-[10px] mt-1 px-5"
+    />
+    <div *ngIf="emailField.errors?.['required'] && emailField.touched" class="text-red-500">
+        email is required.
+      </div>
+
+    
+      <!-- <div *ngIf="emailField.errors?.['required'] && !emailField.errors?.['required'] && emailField.touched">
+        Enter a valid password.
+      </div>
+
+<div *ngIf="emailField.errors?.['email'] && !emailField.errors?.['required'] && emailField.touched">
+  Enter a valid email.
+</div> -->
+
+  </div>
+
+  
+     <div class="mt-6">
+    <label for="password" class="text-[#7C7C7C] mt-3 block text-[15px]">Password:</label>
+    <input
+      type="password"
+      name="password"
+       [(ngModel)]="password"
+      #passwordField="ngModel"
+      required
+      placeholder="****************"
+      class="text-[#7C7C7C] border-2 border-[#D7D7D7] bg-[#F2F2F2] w-[350px] lg:w-[612px] h-[55px] rounded-[10px] mt-1 px-5"
+    /> 
+
+
+
+     <!-- <div *ngIf="passwordField.errors?.['required'] && passwordField.touched" class="text-red-500">
+        password is required.
+      </div>
+    
+      <div *ngIf="passwordField.errors?.['email'] && !passwordField.errors?.['required'] && passwordField.touched">
+        Enter a valid password.
+      </div> -->
+      
+   </div>
+  
+    <button
+      type="submit"
+      class="font-semibold font-outfit bg-[linear-gradient(to_right,_#5FA3FF,_#4393FF)] text-white  text-[16px] px-4 h-[55px] rounded-[10px] mt-6 w-[38rem] full"
+    >
+    Login
+    </button>
+    </form>
+
+    </div>
+
+
+
+
+
+
+
+

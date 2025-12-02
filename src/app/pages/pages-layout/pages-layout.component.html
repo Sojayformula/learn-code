@@ -1,0 +1,50 @@
+
+<div class="overflow-hidden">
+      <nav class="w-full bg-[#1C2E38] text-white px-10 py-5 flex items-center justify-between rounded-b-3xl">
+    <div class="flex items-center gap-2">
+      <div class="w-4 h-4 bg-white rounded-full"></div>
+      <span class="text-lg font-semibold">Sojayblog</span>
+    </div>
+
+    <!-- <ul class="flex gap-10 text-sm">
+      <li class="font-medium cursor-pointer">About</li>
+      <li class="cursor-pointer opacity-80 hover:opacity-100">Artworks</li>
+      <li class="cursor-pointer opacity-80 hover:opacity-100">Membership</li>
+      <li class="cursor-pointer opacity-80 hover:opacity-100">Contact</li>
+    </ul> -->
+
+    
+    <nav class="flex gap-10 text-sm">
+
+           <a
+        routerLink="/dashboard"
+        routerLinkActive="text-white underline bg- blue-700 rounded px- 3 py- 1"
+        class="text-white gray-700 opacity-80 hover:opacity-100 hover:text-white hover:underline px-3 py-1 rounded transition"
+        >Dashboard</a
+      >
+
+        <a
+        routerLink="/employeetable"
+        routerLinkActive="text-white underline bg- blue-700 rounded px- 3 py- 1"
+        class="text-white gray-700 opacity-80 hover:opacity-100 hover:text-white hover:underline bg- blue-500 px-3 py-1 rounded transition"
+        >Employee</a
+      >
+
+      <a
+        routerLink="/about"
+        routerLinkActive="text-white underline bg- blue-700 rounded px- 3 py- 1"
+        class="text-white gray-700 opacity-80 hover:opacity-100 hover:text-white hover:underline px-3 py-1 rounded transition"
+        >About</a>
+
+    </nav>
+
+    <div class="flex items-center gap-5">
+      <button (click)="logout()" class="px-5 py-2 rounded-xl border border-white text-sm">
+        Logout
+      </button>
+    </div>
+  </nav>
+
+  
+    <router-outlet></router-outlet>
+</div>
